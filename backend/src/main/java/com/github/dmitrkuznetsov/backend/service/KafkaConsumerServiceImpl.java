@@ -5,6 +5,7 @@ import com.github.dmitrkuznetsov.backend.kafka.MyKafkaConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -22,7 +23,9 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     private final PaymentHandlerService paymentHandlerService;
     private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
-    public KafkaConsumerServiceImpl(MyKafkaConsumer myKafkaConsumer, PaymentHandlerService paymentHandlerService) {
+    public KafkaConsumerServiceImpl(
+            MyKafkaConsumer myKafkaConsumer,
+            @Qualifier("paymentHandlerServiceToMySql") PaymentHandlerService paymentHandlerService) {
         this.myKafkaConsumer = myKafkaConsumer;
         this.paymentHandlerService = paymentHandlerService;
     }
@@ -32,10 +35,10 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     }
 
     private void poll() {
-        log.info("poll records");
+//        log.info("poll records");
         ConsumerRecords<Long, Payment> records = myKafkaConsumer.getConsumer().poll(timeout);
 //         sleep();
-        log.info("polled records.counter:{}", records.count());
+//        log.info("polled records.counter:{}", records.count());
         for (ConsumerRecord<Long, Payment> kafkaRecord : records) {
             try {
                 var key = kafkaRecord.key();
