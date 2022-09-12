@@ -1,7 +1,7 @@
 package com.github.dmitrkuznetsov.backend;
 
 import com.github.dmitrkuznetsov.backend.configuration.MyConfig;
-import com.github.dmitrkuznetsov.backend.service.BackendService;
+import com.github.dmitrkuznetsov.backend.service.KafkaConsumerService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App
@@ -11,7 +11,9 @@ public class App
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MyConfig.class);
 
-        BackendService backendService = context.getBean("backendServiceImpl", BackendService.class);
-        backendService.run();
+        KafkaConsumerService kafkaConsumerService = context.getBean("kafkaConsumerServiceImpl", KafkaConsumerService.class);
+        kafkaConsumerService.start();
+
+        context.close();
     }
 }
