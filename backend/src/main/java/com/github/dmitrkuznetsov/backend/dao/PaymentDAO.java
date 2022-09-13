@@ -4,5 +4,5 @@ import com.github.dmitrkuznetsov.backend.entity.Payment;
 
 public interface PaymentDAO {
 
-    void save(Payment employee);
+    void save(Payment payment);
 }

@@ -4,6 +4,8 @@ import com.github.dmitrkuznetsov.backend.entity.Payment;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Repository
 public class PaymentDAOImpl implements PaymentDAO {
@@ -15,6 +17,7 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
+    @Transactional
     public void save(Payment payment) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(payment);

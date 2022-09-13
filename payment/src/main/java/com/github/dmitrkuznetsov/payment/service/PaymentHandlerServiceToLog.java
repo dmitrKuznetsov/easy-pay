@@ -1,6 +1,6 @@
 package com.github.dmitrkuznetsov.payment.service;
 
-import com.github.dmitrkuznetsov.payment.entity.Payment;
+import com.github.dmitrkuznetsov.payment.dto.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

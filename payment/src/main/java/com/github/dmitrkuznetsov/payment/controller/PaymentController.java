@@ -1,6 +1,6 @@
 package com.github.dmitrkuznetsov.payment.controller;
 
-import com.github.dmitrkuznetsov.payment.entity.Payment;
+import com.github.dmitrkuznetsov.payment.dto.Payment;
 import com.github.dmitrkuznetsov.payment.service.KafkaProducerService;
 import org.springframework.web.bind.annotation.*;
 

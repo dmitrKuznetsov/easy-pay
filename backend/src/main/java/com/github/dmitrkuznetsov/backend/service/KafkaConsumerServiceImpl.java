@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.github.dmitrkuznetsov.backend.kafka.MyKafkaConsumer.MAX_POLL_INTERVAL_MS;
 
-@Service
+@Service("kafka_consumer")
 @Slf4j
 public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     private final MyKafkaConsumer myKafkaConsumer;
@@ -35,14 +35,14 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
     }
 
     private void poll() {
-//        log.info("poll records");
+        log.info("poll records");
         ConsumerRecords<Long, Payment> records = myKafkaConsumer.getConsumer().poll(timeout);
 //         sleep();
-//        log.info("polled records.counter:{}", records.count());
+        log.info("polled records.counter:{}", records.count());
         for (ConsumerRecord<Long, Payment> kafkaRecord : records) {
             try {
-                var key = kafkaRecord.key();
-                var value = kafkaRecord.value();
+                Long key = kafkaRecord.key();
+                Payment value = kafkaRecord.value();
                 log.info("key:{}, value:{}, record:{}", key, value, kafkaRecord);
                 paymentHandlerService.accept(value);
             } catch (Exception ex) {

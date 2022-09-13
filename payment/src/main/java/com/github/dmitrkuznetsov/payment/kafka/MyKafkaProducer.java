@@ -2,7 +2,7 @@ package com.github.dmitrkuznetsov.payment.kafka;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.dmitrkuznetsov.payment.entity.Payment;
+import com.github.dmitrkuznetsov.payment.dto.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.common.serialization.LongSerializer;

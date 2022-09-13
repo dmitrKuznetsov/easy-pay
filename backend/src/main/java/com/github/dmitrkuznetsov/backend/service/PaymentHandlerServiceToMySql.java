@@ -2,10 +2,12 @@ package com.github.dmitrkuznetsov.backend.service;
 
 import com.github.dmitrkuznetsov.backend.dao.PaymentDAO;
 import com.github.dmitrkuznetsov.backend.entity.Payment;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
+@Slf4j
 public class PaymentHandlerServiceToMySql implements PaymentHandlerService {
     private final PaymentDAO paymentDAO;
 
@@ -14,8 +16,8 @@ public class PaymentHandlerServiceToMySql implements PaymentHandlerService {
     }
 
     @Override
-    @Transactional
     public void accept(Payment payment) {
         paymentDAO.save(payment);
+        log.info("Saved payment: {}", payment);
     }
 }

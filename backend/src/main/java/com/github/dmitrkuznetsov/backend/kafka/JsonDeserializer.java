@@ -35,7 +35,7 @@ public class JsonDeserializer<T> implements Deserializer<T> {
                 return null;
             }
             else {
-                var valueAsString = new String(data, encoding);
+                String valueAsString = new String(data, encoding);
                 return mapper.readValue(valueAsString, typeReference);
             }
         } catch (Exception e) {

@@ -68,7 +68,7 @@ public class MyConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.github.dmitrKuznetsov.rest.entity");
+        sessionFactory.setPackagesToScan("com.github.dmitrkuznetsov.backend.entity");
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty(

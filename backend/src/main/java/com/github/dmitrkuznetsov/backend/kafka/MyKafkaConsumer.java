@@ -56,7 +56,7 @@ public class MyKafkaConsumer {
 
     public String makeGroupInstanceIdConfig()  {
         try {
-            var hostName = InetAddress.getLocalHost().getHostName();
+            String hostName = InetAddress.getLocalHost().getHostName();
             return String.join("-", GROUP_ID_CONFIG_NAME, hostName, String.valueOf(new Random().nextInt(100_999_999)));
         } catch(Exception ex) {
             throw new ConsumerException("can't make GroupInstanceIdConfig", ex);
