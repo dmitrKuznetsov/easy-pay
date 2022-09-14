@@ -14,6 +14,6 @@ public class PaymentController {
 
     @PostMapping
     public void addNewPayment(@RequestBody Payment payment) {
-        kafkaProducerService.dataHandler(payment);
+        kafkaProducerService.send(payment);
     }
 }

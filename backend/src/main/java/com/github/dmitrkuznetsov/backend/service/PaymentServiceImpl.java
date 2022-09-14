@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class PaymentHandlerServiceToMySql implements PaymentHandlerService {
+public class PaymentServiceImpl implements PaymentService {
     private final PaymentDAO paymentDAO;
 
-    public PaymentHandlerServiceToMySql(PaymentDAO paymentDAO) {
+    public PaymentServiceImpl(PaymentDAO paymentDAO) {
         this.paymentDAO = paymentDAO;
     }
 
     @Override
-    public void accept(Payment payment) {
+    public Payment save(Payment payment) {
         paymentDAO.save(payment);
         log.info("Saved payment: {}", payment);
+        return payment;
     }
 }

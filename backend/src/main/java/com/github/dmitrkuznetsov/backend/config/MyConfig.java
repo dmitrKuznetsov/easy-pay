@@ -1,4 +1,4 @@
-package com.github.dmitrkuznetsov.backend.configuration;
+package com.github.dmitrkuznetsov.backend.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import lombok.Setter;
