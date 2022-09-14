@@ -11,8 +11,9 @@ public class BackendApplication
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MyConfig.class);
 
-        MessageListenerContainer container = context.getBean("container", MessageListenerContainer.class);
-        container.start();
+        MessageListenerContainer messageListenerContainer =
+                context.getBean("messageListenerContainer", MessageListenerContainer.class);
+        messageListenerContainer.start();
 
 //        context.close();
     }

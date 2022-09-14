@@ -50,7 +50,7 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    MessageListenerContainer container(
+    MessageListenerContainer messageListenerContainer(
             ConsumerFactory<Long, Payment> consumerFactory
     ) {
         ContainerProperties containerProperties = new ContainerProperties(TO_BACKEND);
