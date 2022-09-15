@@ -33,8 +33,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Payment where datetimeTransaction > :lastDateTimeTransaction");
         query.setParameter("lastDateTimeTransaction", date);
-        List<Payment> list = query.getResultList();
-        return list;
+        return query.getResultList();
     }
 
 }

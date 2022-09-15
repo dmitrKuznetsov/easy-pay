@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
 public class CSVHandlerServiceImpl implements CSVHandlerService {
     private final File file;
     public CSVHandlerServiceImpl() {
-        file = new File("./backend/transaction.csv");
+        file = new File("./backend-ms/transaction.csv");
 
         clearFile();
         Field[] declaredFields = Payment.class.getDeclaredFields();

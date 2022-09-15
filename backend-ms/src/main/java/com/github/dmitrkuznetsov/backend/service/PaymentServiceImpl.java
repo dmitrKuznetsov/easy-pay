@@ -15,7 +15,7 @@ import java.util.List;
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentDAO paymentDAO;
     private final CSVHandlerService csvHandlerService;
-    private Date lastDate = new Date();
+    private volatile Date lastDate = new Date();
     public PaymentServiceImpl(PaymentDAO paymentDAO, CSVHandlerService csvHandlerService) {
         this.paymentDAO = paymentDAO;
         this.csvHandlerService = csvHandlerService;
@@ -28,10 +28,9 @@ public class PaymentServiceImpl implements PaymentService {
         return payment;
     }
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 20000)
     public void scheduleFixedDelayTask() {
         List<Payment> paymentFromDate = paymentDAO.getPaymentFromDate(lastDate);
-        log.info(paymentFromDate.toString());
         lastDate = new Date();
         csvHandlerService.savePayments(paymentFromDate);
     }
