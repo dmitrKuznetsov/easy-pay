@@ -6,12 +6,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 
 @Service
 @Slf4j
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentDAO paymentDAO;
     private final CSVHandlerService csvHandlerService;
+    private Date lastDate = new Date();
     public PaymentServiceImpl(PaymentDAO paymentDAO, CSVHandlerService csvHandlerService) {
         this.paymentDAO = paymentDAO;
         this.csvHandlerService = csvHandlerService;
@@ -26,6 +30,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Scheduled(fixedDelay = 1000)
     public void scheduleFixedDelayTask() {
-        csvHandlerService.saveNewPayments();
+        List<Payment> paymentFromDate = paymentDAO.getPaymentFromDate(lastDate);
+        log.info(paymentFromDate.toString());
+        lastDate = new Date();
+        csvHandlerService.savePayments(paymentFromDate);
     }
 }
